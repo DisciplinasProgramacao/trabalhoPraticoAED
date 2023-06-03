@@ -8,19 +8,19 @@ public class Curso {
     private Candidato[] listaSelecionados;
     // private Queue<Candidato> filaEspera
 
-    public Curso(){
+    public Curso() {
 
     }
 
-    public Curso(int cod, String nome, int quantVagas){
+    public Curso(int cod, String nome, int quantVagas) {
 
     }
 
-    public void inserirFilaEspera(Candidato cand){
+    public void inserirFilaEspera(Candidato cand) {
 
     }
 
-    public boolean inserirListaSelecionados(Candidato cand){
+    public boolean inserirListaSelecionados(Candidato cand) {
         return false;
     }
 
@@ -61,8 +61,5 @@ public class Curso {
     public void setListaSelecionados(Candidato[] listaSelecionados) {
         this.listaSelecionados = listaSelecionados;
     }
-
-    
-
 
 }
