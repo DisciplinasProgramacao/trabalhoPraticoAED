@@ -72,6 +72,15 @@ public class Vestibular {
     }
 
     public void calcularClassificacao() {
+
+        // percorrer a lista de candidatos, pegar acessar as notas de cada matéria e
+        // definir a média
+        for (int i = 0; i < candidatos.length; i++) {
+            Candidato candidato = candidatos[i];
+            double media = (candidato.getNotaRed() + candidato.getNotaMat() + candidato.getNotaLing()) / 3.0;
+            candidato.setMedia(media);
+        }
+
     }
     // Incluir o(s) método(s) para fazer a ordenação
 
