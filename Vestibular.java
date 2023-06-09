@@ -16,37 +16,37 @@ public class Vestibular {
 
     public void lerEntrada(String nomeArq) throws FileNotFoundException {
 
-        // Abrir arquivo de entrada
+        // Abre arquivo de entrada
         Scanner arqLeit = new Scanner(new FileInputStream("C:\\Users\\licitacoes\\Desktop\\entrada.txt"), "UTF-8");
 
-        // Ler o número de cursos (N) e o número de candidatos (M)
+        // Lê o número de cursos (N) e o número de candidatos (M)
         int N = arqLeit.nextInt();
         int M = arqLeit.nextInt();
-        arqLeit.nextLine(); // mover para a próxima linha
+        arqLeit.nextLine(); // move para a próxima linha
 
-        // Ler as informações dos cursos
+        // Lê as informações dos cursos
         for (int i = 0; i < N; i++) {
 
-            // Ler uma linha contendo código, nome e quantidade de vagas do curso
+            // Lê uma linha contendo código, nome e quantidade de vagas do curso
             String linha = arqLeit.nextLine();
-            String[] dadosCurso = linha.split(";"); // criar o vetor dadosCurso do tipo String e dividir a string em
+            String[] dadosCurso = linha.split(";"); // cria o vetor dadosCurso do tipo String e divide a string em
                                                     // várias partes
 
             int codigoCurso = Integer.parseInt(dadosCurso[0]);
             String nomeCurso = dadosCurso[1];
             int vagasCurso = Integer.parseInt(dadosCurso[2]);
 
-            // Criar objeto Curso com as informações lidas e adicionar à lista de cursos
+            // Cria o objeto Curso com as informações lidas e adiciona à lista de cursos
             Curso curso = new Curso(codigoCurso, nomeCurso, vagasCurso);
-            cursos.inserirFim(curso); // inserir curso no fim da lista
+            cursos.inserirFim(curso); // insere o curso no fim da lista
         }
 
-        // Ler as informações dos candidatos
+        // Lê as informações dos candidatos
         for (int i = 0; i < M; i++) {
 
-            // Ler uma linha contendo nome, notas e opções de curso do candidato
+            // Lê uma linha contendo nome, notas e opções de curso do candidato
             String linha = arqLeit.nextLine();
-            String[] dadosCandidato = linha.split(";"); // criar o vetor dadosCandidato do tipo String e dividir a
+            String[] dadosCandidato = linha.split(";"); // cria o vetor dadosCandidato do tipo String e divide a
                                                         // string em várias partes
 
             String nomeCandidato = dadosCandidato[0];
@@ -56,12 +56,12 @@ public class Vestibular {
             int opcao1 = Integer.parseInt(dadosCandidato[4]);
             int opcao2 = Integer.parseInt(dadosCandidato[5]);
 
-            // Criar objeto Candidato com as informações lidas
+            // Cria o objeto Candidato com as informações lidas
             Candidato candidato = new Candidato(nomeCandidato, notaRed, notaMat, notaLing, opcao1, opcao2);
-            candidatos[i] = candidato; // adicionar o objeto candidato no vetor de candidatos
+            candidatos[i] = candidato; // adiciona o objeto candidato no vetor de candidatos
         }
 
-        // Fechar o arquivo após a leitura
+        // Fecha o arquivo após a leitura
         arqLeit.close();
     }
 
@@ -70,16 +70,37 @@ public class Vestibular {
 
     public void calcularClassificacao() {
 
-        // percorrer a lista de candidatos, pegar acessar as notas de cada matéria e
-        // definir a média
+        // percorre a lista de candidatos, acessa as notas de cada matéria e
+        // define a média
         for (int i = 0; i < candidatos.length; i++) {
             Candidato candidato = candidatos[i];
             double media = (candidato.getNotaRed() + candidato.getNotaMat() + candidato.getNotaLing()) / 3.0;
             candidato.setMedia(media);
         }
 
+        // Percorre a lista de candidatos para inserir na 1ª opção de curso
+        for (int i = 0; i < qtdCandidatos; i++) {
+            Candidato candidato = candidatos[i];
+            int opcao1 = candidato.getOp1();
+
+            // Pesquisa o curso da primeira opção
+            Curso curso1 = cursos.pesquisar(opcao1);
+
+            // Verifica se há vagas disponíveis no curso da primeira opção
+            if (curso1.getQuantVagas() > 0) {
+                // Insere o candidato na lista de selecionados do curso
+                curso1.inserirListaSelecionados(candidato);
+
+                // Decrementa o número de vagas disponíveis
+                curso1.setQuantVagas(curso1.getQuantVagas() - 1);
+            } else {
+                // Insere o candidato na fila de espera do curso
+                curso1.inserirFilaEspera(candidato);
+            }
+        }
+
     }
-    // Ordenar candidatos por meio do algoritmo de ordenação quicksort
+    // Ordena candidatos por meio do algoritmo de ordenação quicksort
 
     public void ordenarCandidatos() {
         quicksort(candidatos, 0, candidatos.length - 1);

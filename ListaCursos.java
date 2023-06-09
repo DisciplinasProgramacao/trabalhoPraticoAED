@@ -16,7 +16,12 @@ public class ListaCursos {
     }
 
     public Curso pesquisar(int codCurso) {
-
+        for (CelulaCurso i = primeiro.prox; i != null; i = i.prox) {
+            if (i.elemento.getCod() == codCurso) {
+                return i.elemento;
+            }
+        }
+        return null;
     }
 
 }
