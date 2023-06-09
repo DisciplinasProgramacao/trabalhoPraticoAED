@@ -14,9 +14,6 @@ public class Vestibular {
     public Vestibular() {
     }
 
-    public void ordenarCandidatos() {
-    }
-
     public void lerEntrada(String nomeArq) throws FileNotFoundException {
 
         // Abrir arquivo de entrada
@@ -82,6 +79,52 @@ public class Vestibular {
         }
 
     }
-    // Incluir o(s) método(s) para fazer a ordenação
+    // Ordenar candidatos por meio do algoritmo de ordenação quicksort
+
+    public void ordenarCandidatos() {
+        quicksort(candidatos, 0, candidatos.length - 1);
+    }
+
+    private void quicksort(Candidato[] array, int esq, int dir) {
+        int i = esq, j = dir;
+
+        // pivô vai ser com base na média e na nota da redação
+        double pivo = (array[(esq + dir) / 2].getMedia() + array[(esq + dir) / 2].getNotaRed()) / 2.0;
+
+        while (i <= j) {
+
+            // se a média for menor que o pivô, incrementa i
+            // mas se a média for igual ao pivô, o critério de desempate é a nota da redação
+            while (array[i].getMedia() < pivo || (array[i].getMedia() == pivo && array[i].getNotaRed() < pivo)) {
+                i++;
+            }
+            // se a média for maior que o pivô, decrementa j
+            // mas se a média for igual ao pivô, o critério de desempate é a nota da redação
+            while (array[j].getMedia() > pivo || (array[j].getMedia() == pivo && array[j].getNotaRed() > pivo)) {
+                j--;
+            }
+
+            // se i e j se cruzarem, faz a troca dos candidatos no vetor
+            if (i <= j) {
+                Candidato temp = array[i];
+                array[i] = array[j];
+                array[j] = temp;
+                i++;
+                j--;
+            }
+        }
+
+        // verifica se há elementos na esquerda do pivô. se sim, o método é chamado
+        // novamente
+        if (esq < j) {
+            quicksort(array, esq, j);
+        }
+
+        // verifica se há elementos na direita do pivô. se sim, o método é chamado
+        // novamente
+        if (i < dir) {
+            quicksort(array, i, dir);
+        }
+    }
 
 }
