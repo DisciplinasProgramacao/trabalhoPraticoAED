@@ -11,10 +11,13 @@ public class Curso {
     ListaCursos listaCursos;
 
     public Curso() {
-
+        this(0, null, 0);
     }
 
     public Curso(int cod, String nome, int quantVagas) {
+        this.cod = cod;
+        this.nome = nome;
+        this.quantVagas = quantVagas;
 
     }
 
@@ -23,7 +26,7 @@ public class Curso {
     }
 
     public boolean inserirListaSelecionados(Candidato cand) {
-        
+
     }
 
     @Override

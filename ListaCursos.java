@@ -4,6 +4,8 @@ public class ListaCursos {
     private CelulaCurso ultimo;
 
     public ListaCursos() {
+        primeiro = new CelulaCurso();
+        ultimo = primeiro;
     }
 
     public void inserirFim(Curso c) {
@@ -13,6 +15,7 @@ public class ListaCursos {
     }
 
     public String mostrar() {
+        
     }
 
     public Curso pesquisar(int codCurso) {

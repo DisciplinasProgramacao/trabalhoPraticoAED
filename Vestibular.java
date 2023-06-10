@@ -65,9 +65,6 @@ public class Vestibular {
         arqLeit.close();
     }
 
-    public void escreverSaida(String nomeArq) {
-    }
-
     public void calcularClassificacao() {
 
         // percorre a lista de candidatos, acessa as notas de cada matéria e
@@ -82,9 +79,11 @@ public class Vestibular {
         for (int i = 0; i < qtdCandidatos; i++) {
             Candidato candidato = candidatos[i];
             int opcao1 = candidato.getOp1();
+            int opcao2 = candidato.getOp2();
 
             // Pesquisa o curso da primeira opção
             Curso curso1 = cursos.pesquisar(opcao1);
+            Curso curso2 = cursos.pesquisar(opcao2);
 
             // Verifica se há vagas disponíveis no curso da primeira opção
             if (curso1.getQuantVagas() > 0) {
@@ -98,10 +97,9 @@ public class Vestibular {
                 curso1.inserirFilaEspera(candidato);
             }
         }
-
     }
-    // Ordena candidatos por meio do algoritmo de ordenação quicksort
 
+    // Ordena candidatos por meio do algoritmo de ordenação quicksort
     public void ordenarCandidatos() {
         quicksort(candidatos, 0, candidatos.length - 1);
     }
@@ -146,6 +144,9 @@ public class Vestibular {
         if (i < dir) {
             quicksort(array, i, dir);
         }
+    }
+
+    public void escreverSaida(String nomeArq) {
     }
 
 }
