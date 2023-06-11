@@ -7,6 +7,7 @@ import java.util.Scanner;
 public class Vestibular {
 
     private ListaCursos cursos;
+    private FilaEspera filaEspera;
     private Candidato[] candidatos;
     private int qtdCursos;
     private int qtdCandidatos;
@@ -17,7 +18,7 @@ public class Vestibular {
     public void lerEntrada(String nomeArq) throws FileNotFoundException {
 
         // Abre arquivo de entrada
-        Scanner arqLeit = new Scanner(new FileInputStream("C:\\Users\\licitacoes\\Desktop\\entrada.txt"), "UTF-8");
+        Scanner arqLeit = new Scanner(new FileInputStream("entrada.txt"), "UTF-8");
 
         // Lê o número de cursos (N) e o número de candidatos (M)
         int N = arqLeit.nextInt();
@@ -81,7 +82,7 @@ public class Vestibular {
             int opcao1 = candidato.getOp1();
             int opcao2 = candidato.getOp2();
 
-            // Pesquisa o curso da primeira opção
+            // Pesquisa o curso da primeira e segunda opção
             Curso curso1 = cursos.pesquisar(opcao1);
             Curso curso2 = cursos.pesquisar(opcao2);
 
@@ -91,10 +92,14 @@ public class Vestibular {
                 curso1.inserirListaSelecionados(candidato);
 
                 // Decrementa o número de vagas disponíveis
-                curso1.setQuantVagas(curso1.getQuantVagas() - 1);
-            } else {
+                curso1.setQuantVagas(curso1.getQuantVagas() - 1);  
+            }
+            else if(curso1.getQuantVagas() <= 0){
+
+                }else if {
                 // Insere o candidato na fila de espera do curso
                 curso1.inserirFilaEspera(candidato);
+
             }
         }
     }

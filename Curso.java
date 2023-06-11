@@ -1,5 +1,4 @@
 import java.util.Arrays;
-import java.util.Queue;
 
 public class Curso {
 
@@ -7,7 +6,6 @@ public class Curso {
     private String nome;
     private int quantVagas;
     private Candidato[] listaSelecionados;
-    private Queue<Candidato> filaEspera;
     ListaCursos listaCursos;
 
     public Curso() {

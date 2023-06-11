@@ -1,29 +1,23 @@
-public class ListaCursos {
+public class FilaEspera {
 
     private CelulaCurso primeiro;
     private CelulaCurso ultimo;
 
-    public ListaCursos() {
+    public FilaEspera() {
         primeiro = new CelulaCurso();
         ultimo = primeiro;
     }
 
-    public void inserirFim(Curso c) {
+    public void inserir(Curso c) {
         ultimo.prox = new CelulaCurso(c);
         ultimo = ultimo.prox;
     }
 
-    public String mostrar() {
-
-    }
-
-    public Curso pesquisar(int codCurso) {
+    public void mostrar() {
+        System.out.print("[ ");
         for (CelulaCurso i = primeiro.prox; i != null; i = i.prox) {
-            if (i.elemento.getCod() == codCurso) {
-                return i.elemento;
-            }
+            System.out.print(i.elemento + " ");
         }
-        return null;
+        System.out.println("]");
     }
-
 }
