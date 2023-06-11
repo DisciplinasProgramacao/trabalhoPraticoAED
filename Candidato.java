@@ -11,7 +11,7 @@ public class Candidato {
     public Candidato() {
         this(null, 0, 0, 0, 0, 0);
     }
-    // teste
+   
     public Candidato(String nome, double notaRed, double notaMat, double notaLing, int op1, int op2) {
         this.nome = nome;
         this.notaRed = notaRed;
