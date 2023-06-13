@@ -1,12 +1,14 @@
-import java.util.Arrays;
+import java.util.ArrayList;
+import java.util.Queue;
+import java.util.LinkedList;
 
 public class Curso {
 
     private int cod;
     private String nome;
     private int quantVagas;
-    private Candidato[] listaSelecionados;
-    ListaCursos listaCursos;
+    private ArrayList<Candidato> listaSelecionados;
+    private Queue<Candidato> filaEspera;
 
     public Curso() {
         this(0, null, 0);
@@ -16,21 +18,38 @@ public class Curso {
         this.cod = cod;
         this.nome = nome;
         this.quantVagas = quantVagas;
+        this.listaSelecionados = new ArrayList<>();
+        this.filaEspera = new LinkedList<>();
 
     }
 
     public void inserirFilaEspera(Candidato cand) {
-
+        filaEspera.add(cand);
     }
 
     public boolean inserirListaSelecionados(Candidato cand) {
+        if (listaSelecionados.size() < quantVagas) {
+            listaSelecionados.add(cand);
+            return true;
+        }
+        return false;
+    }
 
+    public double calcularMenorNotaSelecionados() {
+        double menorNota = Double.MAX_VALUE;
+        for (Candidato candidato : listaSelecionados) {
+            double nota = candidato.getMedia();
+            if (nota < menorNota) {
+                menorNota = nota;
+            }
+        }
+        return menorNota;
     }
 
     @Override
     public String toString() {
         return "Curso [cod=" + cod + ", nome=" + nome + ", quantVagas=" + quantVagas + ", listaSelecionados="
-                + Arrays.toString(listaSelecionados) + "]";
+                + listaSelecionados + ", filaEspera=" + filaEspera + "]";
     }
 
     public int getCod() {
@@ -57,12 +76,20 @@ public class Curso {
         this.quantVagas = quantVagas;
     }
 
-    public Candidato[] getListaSelecionados() {
+    public ArrayList<Candidato> getListaSelecionados() {
         return listaSelecionados;
     }
 
-    public void setListaSelecionados(Candidato[] listaSelecionados) {
+    public void setListaSelecionados(ArrayList<Candidato> listaSelecionados) {
         this.listaSelecionados = listaSelecionados;
+    }
+
+    public Queue<Candidato> getFilaEspera() {
+        return filaEspera;
+    }
+
+    public void setFilaEspera(Queue<Candidato> filaEspera) {
+        this.filaEspera = filaEspera;
     }
 
 }
