@@ -11,7 +11,11 @@ public class Vestibular {
     private int qtdCursos;
     private int qtdCandidatos;
 
-    public Vestibular() {
+    public Vestibular(ListaCursos cursos, Candidato[] candidatos, int qtdCursos, int qtdCandidatos) {
+        this.cursos = cursos;
+        this.candidatos = candidatos;
+        this.qtdCursos = qtdCursos;
+        this.qtdCandidatos = qtdCandidatos;
     }
 
     public void lerEntrada(String nomeArq) throws FileNotFoundException {
