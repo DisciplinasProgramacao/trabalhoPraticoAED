@@ -7,7 +7,6 @@ import java.util.Scanner;
 public class Vestibular {
 
     private ListaCursos cursos;
-    private FilaEspera filaEspera;
     private Candidato[] candidatos;
     private int qtdCursos;
     private int qtdCandidatos;
