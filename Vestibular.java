@@ -13,9 +13,17 @@ public class Vestibular {
     private int qtdCursos;
     private int qtdCandidatos;
 
+<<<<<<< HEAD
     public Vestibular() {
         candidatos = new Candidato[1000];
         cursos = new ListaCursos();
+=======
+    public Vestibular(ListaCursos cursos, Candidato[] candidatos, int qtdCursos, int qtdCandidatos) {
+        this.cursos = cursos;
+        this.candidatos = candidatos;
+        this.qtdCursos = qtdCursos;
+        this.qtdCandidatos = qtdCandidatos;
+>>>>>>> 70ac69041c1fb9b28b8f07625cb4eabf2e2dd749
     }
 
     public void lerEntrada(String nomeArq) throws FileNotFoundException {
