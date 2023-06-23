@@ -37,12 +37,15 @@ public class Curso {
 
     public double calcularMenorNotaSelecionados() {
         double menorNota = Double.MAX_VALUE;
-        for (Candidato candidato : listaSelecionados) {
+
+        for (int i = 0; i < listaSelecionados.size(); i++) {
+            Candidato candidato = listaSelecionados.get(i);
             double nota = candidato.getMedia();
             if (nota < menorNota) {
                 menorNota = nota;
             }
         }
+
         return menorNota;
     }
 

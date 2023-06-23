@@ -1,7 +1,7 @@
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-
 import java.io.UnsupportedEncodingException;
 import java.util.Formatter;
 import java.util.Scanner;
@@ -13,22 +13,17 @@ public class Vestibular {
     private int qtdCursos;
     private int qtdCandidatos;
 
-<<<<<<< HEAD
-    public Vestibular() {
-        candidatos = new Candidato[1000];
-        cursos = new ListaCursos();
-=======
     public Vestibular(ListaCursos cursos, Candidato[] candidatos, int qtdCursos, int qtdCandidatos) {
         this.cursos = cursos;
         this.candidatos = candidatos;
         this.qtdCursos = qtdCursos;
         this.qtdCandidatos = qtdCandidatos;
->>>>>>> 70ac69041c1fb9b28b8f07625cb4eabf2e2dd749
+
     }
 
     public void lerEntrada(String nomeArq) throws FileNotFoundException {
         File arquivo = new File("entrada.txt");
-        Scanner arqLeit = new Scanner(arquivo, "UTF-8");
+        Scanner arqLeit = new Scanner(new FileInputStream(arquivo), "UTF-8");
 
         // Lê o número de cursos (N) e o número de candidatos (M)
         qtdCursos = arqLeit.nextInt();
@@ -49,6 +44,8 @@ public class Vestibular {
         }
 
         // Lê as informações dos candidatos
+
+        arqLeit.nextLine(); // Move para a próxima linha
         for (int i = 0; i < qtdCandidatos; i++) {
             String linha = arqLeit.nextLine();
             String[] dadosCandidato = linha.split(";");
@@ -89,6 +86,7 @@ public class Vestibular {
             boolean selecionadoOpcao2 = false;
             if (!selecionadoOpcao1 && cursoOpcao2 != null) {
                 selecionadoOpcao2 = cursoOpcao2.inserirListaSelecionados(candidato);
+                cursoOpcao1.inserirFilaEspera(candidato);
             }
 
             // Caso o candidato não tenha sido selecionado para nenhuma opção,
@@ -113,7 +111,7 @@ public class Vestibular {
         int i = esq, j = dir;
 
         // pivô vai ser com base na média e na nota da redação
-        double pivo = (array[(esq + dir) / 2].getMedia() + array[(esq + dir) / 2].getNotaRed()) / 2.0;
+        double pivo = (array[(esq + dir) / 2].getMedia() + array[(esq + dir) / 2].getNotaRed()) / 2;
 
         while (i <= j) {
 
@@ -154,6 +152,7 @@ public class Vestibular {
     public void escreverSaida(String nomeArq) throws FileNotFoundException, UnsupportedEncodingException {
         Formatter arqEscrita = new Formatter("saida.txt", "UTF-8");
         arqEscrita.format("%s", cursos.mostrar());
+        cursos.mostrar();
         arqEscrita.close();
     }
 
