@@ -11,6 +11,8 @@ public class Teste {
         v.lerEntrada("entrada.txt");
         v.calcularClassificacao();
         v.escreverSaida("saida.txt");
+
+        //teste
     }
 
 }
