@@ -32,8 +32,10 @@ public class Curso {
             listaSelecionados.add(cand);
             return true;
         } else if (cand.getMedia() > calcularMenorNotaSelecionados()) {
+            //inserirFilaEspera(listaSelecionados.size() - 1);
             listaSelecionados.remove(listaSelecionados.size() - 1);
             listaSelecionados.add(cand);
+            return true;
         }
         return false;
     }
