@@ -22,17 +22,20 @@ public class Vestibular {
     }
 
     public void lerEntrada(String nomeArq) throws FileNotFoundException {
-        File arquivo = new File("entrada.txt");
-        Scanner arqLeit = new Scanner(new FileInputStream(arquivo), "UTF-8");
+        File arquivo = new File("C:/teste/teste.txt");
+        FileInputStream is = new FileInputStream(arquivo);
+        Scanner arqLeit = new Scanner(is, "UTF-8");
 
         // Lê o número de cursos (N) e o número de candidatos (M)
-        qtdCursos = arqLeit.nextInt();
-        qtdCandidatos = arqLeit.nextInt();
-        arqLeit.nextLine(); // Move para a próxima linha
+        String linha = arqLeit.nextLine();
+        String[] cursoAluno = linha.split(";");
+        qtdCursos = Integer.parseInt(cursoAluno[0]);
+        qtdCandidatos =Integer.parseInt(cursoAluno[1]);
+        //arqLeit.nextLine(); // Move para a próxima linha
 
         // Lê as informações dos cursos
         for (int i = 0; i < qtdCursos; i++) {
-            String linha = arqLeit.nextLine();
+             linha = arqLeit.nextLine();
             String[] dadosCurso = linha.split(";");
 
             int codigoCurso = Integer.parseInt(dadosCurso[0]);
@@ -44,10 +47,10 @@ public class Vestibular {
         }
 
         // Lê as informações dos candidatos
-
-        arqLeit.nextLine(); // Move para a próxima linha
+        this.candidatos = new Candidato[qtdCandidatos];
+       // arqLeit.nextLine(); // Move para a próxima linha
         for (int i = 0; i < qtdCandidatos; i++) {
-            String linha = arqLeit.nextLine();
+             linha = arqLeit.nextLine();
             String[] dadosCandidato = linha.split(";");
 
             String nomeCandidato = dadosCandidato[0];

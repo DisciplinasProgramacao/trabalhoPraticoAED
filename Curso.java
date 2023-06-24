@@ -10,10 +10,7 @@ public class Curso {
     private ArrayList<Candidato> listaSelecionados;
     private Queue<Candidato> filaEspera;
 
-    public Curso() {
-        this(0, null, 0);
-    }
-
+   
     public Curso(int cod, String nome, int quantVagas) {
         this.cod = cod;
         this.nome = nome;
