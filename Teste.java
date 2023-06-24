@@ -5,9 +5,7 @@ public class Teste {
 
     public static void main(String[] args) throws FileNotFoundException, UnsupportedEncodingException {
         
-        ListaCursos lc = new ListaCursos();
-
-        lc.mostrar();
+       
 
         
         
