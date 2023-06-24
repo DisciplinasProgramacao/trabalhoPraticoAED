@@ -31,18 +31,26 @@ public class Curso {
         if (listaSelecionados.size() < quantVagas) {
             listaSelecionados.add(cand);
             return true;
+        } else if (cand.getMedia() > calcularMenorNotaSelecionados()) {
+            //inserirFilaEspera(listaSelecionados.size() - 1);
+            listaSelecionados.remove(listaSelecionados.size() - 1);
+            listaSelecionados.add(cand);
+            return true;
         }
         return false;
     }
 
     public double calcularMenorNotaSelecionados() {
         double menorNota = Double.MAX_VALUE;
-        for (Candidato candidato : listaSelecionados) {
+
+        for (int i = 0; i < listaSelecionados.size(); i++) {
+            Candidato candidato = listaSelecionados.get(i);
             double nota = candidato.getMedia();
             if (nota < menorNota) {
                 menorNota = nota;
             }
         }
+
         return menorNota;
     }
 

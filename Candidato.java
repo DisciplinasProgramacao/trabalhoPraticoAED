@@ -11,7 +11,7 @@ public class Candidato {
     public Candidato() {
         this(null, 0, 0, 0, 0, 0);
     }
-   
+
     public Candidato(String nome, double notaRed, double notaMat, double notaLing, int op1, int op2) {
         this.nome = nome;
         this.notaRed = notaRed;
@@ -76,7 +76,7 @@ public class Candidato {
     }
 
     public double getMedia() {
-        return media;
+        return (notaLing + notaMat + notaRed) / 3;
     }
 
     public void setMedia(double media) {
