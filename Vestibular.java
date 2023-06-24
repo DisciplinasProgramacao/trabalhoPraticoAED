@@ -70,23 +70,19 @@ public class Vestibular {
         ordenarCandidatos();
 
         // Percorre a lista de candidatos
-        for (Candidato candidato : candidatos) {
-            // Obtém as opções de curso do candidato
-            int opcao1 = candidato.getOp1();
-            int opcao2 = candidato.getOp2();
+        for (int i = 0; i < candidatos.length; i++) {
 
             // Pesquisa os cursos nas opções do candidato
-            Curso cursoOpcao1 = cursos.pesquisar(opcao1);
-            Curso cursoOpcao2 = cursos.pesquisar(opcao2);
+            Curso cursoOpcao1 = cursos.pesquisar(candidatos[i].getOp1());
+            Curso cursoOpcao2 = cursos.pesquisar(candidatos[i].getOp2());
 
             // Verifica se o candidato foi selecionado para a primeira opção de curso
-            boolean selecionadoOpcao1 = cursoOpcao1.inserirListaSelecionados(candidato);
+            boolean selecionadoOpcao1 = cursoOpcao1.inserirListaSelecionados(candidatos[i]);
 
             // Verifica se o candidato foi selecionado para a segunda opção de curso
-            boolean selecionadoOpcao2 = false;
             if (!selecionadoOpcao1 && cursoOpcao2 != null) {
-                selecionadoOpcao2 = cursoOpcao2.inserirListaSelecionados(candidato);
-                cursoOpcao1.inserirFilaEspera(candidato);
+                boolean selecionadoOpcao2 = cursoOpcao2.inserirListaSelecionados(candidatos[i]);
+                cursoOpcao1.inserirFilaEspera(candidatos[i]);
             }
 
             // Caso o candidato não tenha sido selecionado para nenhuma opção,

@@ -31,6 +31,9 @@ public class Curso {
         if (listaSelecionados.size() < quantVagas) {
             listaSelecionados.add(cand);
             return true;
+        } else if (cand.getMedia() > calcularMenorNotaSelecionados()) {
+            listaSelecionados.remove(listaSelecionados.size() - 1);
+            listaSelecionados.add(cand);
         }
         return false;
     }
