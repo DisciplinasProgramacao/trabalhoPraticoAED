@@ -9,6 +9,8 @@ public class Teste {
 
         v.lerEntrada("entrada.txt");
         v.escreverSaida("saida.txt");
+
+        //teste
     }
 
 }
