@@ -1,18 +1,26 @@
-Matemática 700.0
+
+Matemática 733.3333333333334
 Selecionados
-Bob Esponja 700.0
 Mickey Mouse 766.6666666666666
+Pato Donald 733.3333333333334
 Fila de Espera
-Física 1.7976931348623157E308
+Bob Esponja 700.0
+
+Física 633.3333333333334
 Selecionados
+Peppa Pig 633.3333333333334
+Bob Esponja 700.0
 Fila de Espera
+
 Química 783.3333333333334
 Selecionados
-Peter Parker 783.3333333333334
 Deadpool 800.0
+Peter Parker 783.3333333333334
 Fila de Espera
+Peppa Pig 633.3333333333334
+
 Estatística 566.6666666666666
 Selecionados
-Super Mario Bros 566.6666666666666
 Tio Patinhas 666.6666666666666
+Super Mario Bros 566.6666666666666
 Fila de Espera

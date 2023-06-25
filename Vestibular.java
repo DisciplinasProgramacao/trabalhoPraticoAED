@@ -22,7 +22,7 @@ public class Vestibular {
     }
 
     public void lerEntrada(String nomeArq) throws FileNotFoundException {
-        File arquivo = new File("C:/teste/teste.txt");
+        File arquivo = new File("entrada.txt");
         FileInputStream is = new FileInputStream(arquivo);
         Scanner arqLeit = new Scanner(is, "UTF-8");
 
@@ -112,7 +112,7 @@ public class Vestibular {
 
             // se a média for menor que o pivô, incrementa i
             // mas se a média for igual ao pivô, o critério de desempate é a nota da redação
-            while (array[i].getMedia() < pivo) {
+            while (array[i].getMedia() > pivo) {
                 i++;
             }
             // se a média for maior que o pivô, decrementa j
@@ -154,12 +154,12 @@ public class Vestibular {
 
             // se a média for menor que o pivô, incrementa i
             // mas se a média for igual ao pivô, o critério de desempate é a nota da redação
-            while (array[i].getNotaRed() < pivo) {
+            while (array[i].getNotaRed() > pivo) {
                 i++;
             }
             // se a média for maior que o pivô, decrementa j
             // mas se a média for igual ao pivô, o critério de desempate é a nota da redação
-            while (array[j].getNotaRed() > pivo) {
+            while (array[j].getNotaRed() < pivo) {
                 j--;
             }
 
