@@ -30,12 +30,12 @@ public class Vestibular {
         String linha = arqLeit.nextLine();
         String[] cursoAluno = linha.split(";");
         qtdCursos = Integer.parseInt(cursoAluno[0]);
-        qtdCandidatos =Integer.parseInt(cursoAluno[1]);
-        //arqLeit.nextLine(); // Move para a próxima linha
+        qtdCandidatos = Integer.parseInt(cursoAluno[1]);
+        // arqLeit.nextLine(); // Move para a próxima linha
 
         // Lê as informações dos cursos
         for (int i = 0; i < qtdCursos; i++) {
-             linha = arqLeit.nextLine();
+            linha = arqLeit.nextLine();
             String[] dadosCurso = linha.split(";");
 
             int codigoCurso = Integer.parseInt(dadosCurso[0]);
@@ -48,9 +48,9 @@ public class Vestibular {
 
         // Lê as informações dos candidatos
         this.candidatos = new Candidato[qtdCandidatos];
-       // arqLeit.nextLine(); // Move para a próxima linha
+        // arqLeit.nextLine(); // Move para a próxima linha
         for (int i = 0; i < qtdCandidatos; i++) {
-             linha = arqLeit.nextLine();
+            linha = arqLeit.nextLine();
             String[] dadosCandidato = linha.split(";");
 
             String nomeCandidato = dadosCandidato[0];
@@ -95,94 +95,90 @@ public class Vestibular {
         }
     }
 
-    // Ordena candidatos por meio do algoritmo de ordenação quicksort
+    // Ordena candidatos por meio do algoritmo de ordenação mergesort
     public void ordenarCandidatos() {
-        quicksortMedia(candidatos, 0, candidatos.length - 1);
-        quicksortRed(candidatos, 0, candidatos.length - 1);
+        mergesort(candidatos, 0, candidatos.length - 1);
 
     }
 
-    private void quicksortMedia(Candidato[] array, int esq, int dir) {
-        int i = esq, j = dir;
+    public void mergesort(Candidato[] array, int esq, int dir) {
+        if (esq < dir) {
+            // Calcula o índice do meio do array
+            int meio = (esq + dir) / 2;
 
-        // pivô vai ser com base na média e na nota da redação
-        double pivo = (array[(esq + dir) / 2].getMedia());
+            // Chama recursivamente o mergesort para a metade esquerda do array
+            mergesort(array, esq, meio);
 
-        while (i <= j) {
+            // Chama recursivamente o mergesort para a metade direita do array
+            mergesort(array, meio + 1, dir);
 
-            // se a média for menor que o pivô, incrementa i
-            // mas se a média for igual ao pivô, o critério de desempate é a nota da redação
-            while (array[i].getMedia() > pivo) {
-                i++;
-            }
-            // se a média for maior que o pivô, decrementa j
-            // mas se a média for igual ao pivô, o critério de desempate é a nota da redação
-            while (array[j].getMedia() > pivo) {
-                j--;
-            }
-
-            // se i e j se cruzarem, faz a troca dos candidatos no vetor
-            if (i <= j) {
-                Candidato temp = array[i];
-                array[i] = array[j];
-                array[j] = temp;
-                i++;
-                j--;
-            }
-        }
-
-        // verifica se há elementos na esquerda do pivô. se sim, o método é chamado
-        // novamente
-        if (esq < j) {
-            quicksortMedia(array, esq, j);
-        }
-
-        // verifica se há elementos na direita do pivô. se sim, o método é chamado
-        // novamente
-        if (i < dir) {
-            quicksortMedia(array, i, dir);
+            // Combina as duas metades ordenadas
+            intercalar(array, esq, meio, dir);
         }
     }
 
-    private void quicksortRed(Candidato[] array, int esq, int dir) {
-        int i = esq, j = dir;
+    public void intercalar(Candidato[] array, int esq, int meio, int dir) {
+        // Calcula o tamanho dos subarrays
+        int nEsq = meio - esq + 1;
+        int nDir = dir - meio;
 
-        // pivô vai ser com base na média e na nota da redação
-        double pivo = (array[(esq + dir) / 2].getNotaRed());
+        // Cria os subarrays temporários
+        Candidato[] arrayEsq = new Candidato[nEsq];
+        Candidato[] arrayDir = new Candidato[nDir];
 
-        while (i <= j) {
-
-            // se a média for menor que o pivô, incrementa i
-            // mas se a média for igual ao pivô, o critério de desempate é a nota da redação
-            while (array[i].getNotaRed() > pivo) {
-                i++;
-            }
-            // se a média for maior que o pivô, decrementa j
-            // mas se a média for igual ao pivô, o critério de desempate é a nota da redação
-            while (array[j].getNotaRed() < pivo) {
-                j--;
-            }
-
-            // se i e j se cruzarem, faz a troca dos candidatos no vetor
-            if (i <= j) {
-                Candidato temp = array[i];
-                array[i] = array[j];
-                array[j] = temp;
-                i++;
-                j--;
-            }
+        // Copia os elementos da metade esquerda para o subarray esquerdo
+        for (int i = 0; i < nEsq; i++) {
+            arrayEsq[i] = array[esq + i];
         }
 
-        // verifica se há elementos na esquerda do pivô. se sim, o método é chamado
-        // novamente
-        if (esq < j) {
-            quicksortRed(array, esq, j);
+        // Copia os elementos da metade direita para o subarray direito
+        for (int i = 0; i < nDir; i++) {
+            arrayDir[i] = array[meio + 1 + i];
         }
 
-        // verifica se há elementos na direita do pivô. se sim, o método é chamado
-        // novamente
-        if (i < dir) {
-            quicksortRed(array, i, dir);
+        // Índices para percorrer os subarrays
+        int iEsq = 0;
+        int iDir = 0;
+        int i = esq;
+
+        // Combina os elementos dos subarrays de forma ordenada
+        while (iEsq < nEsq && iDir < nDir) {
+            if (arrayEsq[iEsq].getMedia() > arrayDir[iDir].getMedia()) {
+                // O elemento do subarray esquerdo é maior, coloca no array final
+                array[i] = arrayEsq[iEsq];
+                iEsq++;
+            } else if (arrayEsq[iEsq].getMedia() < arrayDir[iDir].getMedia()) {
+                // O elemento do subarray direito é maior, coloca no array final
+                array[i] = arrayDir[iDir];
+                iDir++;
+            } else {
+                // Empate na média, usar nota de redação como critério de desempate
+                if (arrayEsq[iEsq].getNotaRed() >= arrayDir[iDir].getNotaRed()) {
+                    // A nota de redação do subarray esquerdo é maior ou igual, coloca no array
+                    // final
+                    array[i] = arrayEsq[iEsq];
+                    iEsq++;
+                } else {
+                    // A nota de redação do subarray direito é maior, coloca no array final
+                    array[i] = arrayDir[iDir];
+                    iDir++;
+                }
+            }
+            i++;
+        }
+
+        // Copia os elementos restantes do subarray esquerdo, se houver
+        while (iEsq < nEsq) {
+            array[i] = arrayEsq[iEsq];
+            iEsq++;
+            i++;
+        }
+
+        // Copia os elementos restantes do subarray direito, se houver
+        while (iDir < nDir) {
+            array[i] = arrayDir[iDir];
+            iDir++;
+            i++;
         }
     }
 

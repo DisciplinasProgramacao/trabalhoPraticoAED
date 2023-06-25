@@ -12,7 +12,6 @@ public class Teste {
         v.calcularClassificacao();
         v.escreverSaida("saida.txt");
 
-        //teste
     }
 
 }

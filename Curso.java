@@ -10,7 +10,6 @@ public class Curso {
     private ArrayList<Candidato> listaSelecionados;
     private Queue<Candidato> filaEspera;
 
-   
     public Curso(int cod, String nome, int quantVagas) {
         this.cod = cod;
         this.nome = nome;
@@ -29,7 +28,7 @@ public class Curso {
             listaSelecionados.add(cand);
             return true;
         } else if (cand.getMedia() > calcularMenorNotaSelecionados()) {
-            //inserirFilaEspera(listaSelecionados.size() - 1);
+            // inserirFilaEspera(listaSelecionados.size() - 1);
             listaSelecionados.remove(listaSelecionados.size() - 1);
             listaSelecionados.add(cand);
             return true;

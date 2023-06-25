@@ -8,10 +8,6 @@ public class Candidato {
     private int op2;
     private double media;
 
-    public Candidato() {
-        this(null, 0, 0, 0, 0, 0);
-    }
-
     public Candidato(String nome, double notaRed, double notaMat, double notaLing, int op1, int op2) {
         this.nome = nome;
         this.notaRed = notaRed;
@@ -76,7 +72,9 @@ public class Candidato {
     }
 
     public double getMedia() {
-        return (notaLing + notaMat + notaRed) / 3;
+        double media = (notaLing + notaMat + notaRed) / 3;
+        double arredondado = Math.round(media * 100.0) / 100.0;
+        return arredondado;
     }
 
     public void setMedia(double media) {
