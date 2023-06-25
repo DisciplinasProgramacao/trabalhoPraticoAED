@@ -1,4 +1,3 @@
-
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -8,17 +7,16 @@ import java.util.Scanner;
 
 public class Vestibular {
 
-    private ListaCursos cursos;
-    private Candidato[] candidatos;
-    private int qtdCursos;
-    private int qtdCandidatos;
+    private ListaCursos cursos; // Lista de cursos disponíveis
+    private Candidato[] candidatos; // Array de candidatos
+    private int qtdCursos; // Quantidade de cursos
+    private int qtdCandidatos; // Quantidade de candidatos
 
     public Vestibular(ListaCursos cursos, Candidato[] candidatos, int qtdCursos, int qtdCandidatos) {
-        this.cursos = new ListaCursos();
-        this.candidatos = candidatos;
-        this.qtdCursos = qtdCursos;
-        this.qtdCandidatos = qtdCandidatos;
-
+        this.cursos = new ListaCursos(); // Inicializa a lista de cursos
+        this.candidatos = candidatos; // Inicializa o array de candidatos
+        this.qtdCursos = qtdCursos; // Define a quantidade de cursos
+        this.qtdCandidatos = qtdCandidatos; // Define a quantidade de candidatos
     }
 
     public void lerEntrada(String nomeArq) throws FileNotFoundException {
@@ -31,7 +29,6 @@ public class Vestibular {
         String[] cursoAluno = linha.split(";");
         qtdCursos = Integer.parseInt(cursoAluno[0]);
         qtdCandidatos = Integer.parseInt(cursoAluno[1]);
-        // arqLeit.nextLine(); // Move para a próxima linha
 
         // Lê as informações dos cursos
         for (int i = 0; i < qtdCursos; i++) {
@@ -48,7 +45,7 @@ public class Vestibular {
 
         // Lê as informações dos candidatos
         this.candidatos = new Candidato[qtdCandidatos];
-        // arqLeit.nextLine(); // Move para a próxima linha
+
         for (int i = 0; i < qtdCandidatos; i++) {
             linha = arqLeit.nextLine();
             String[] dadosCandidato = linha.split(";");
@@ -68,19 +65,16 @@ public class Vestibular {
     }
 
     public void calcularClassificacao() {
-
-        // Ordena os candidatos pelo critério definido no quicksort
+        // Ordena os candidatos pelo critério definido no método ordenarCandidatos()
         ordenarCandidatos();
 
         // Percorre a lista de candidatos
         for (int i = 0; i < candidatos.length; i++) {
-
             // Pesquisa os cursos nas opções do candidato
             Curso cursoOpcao1 = cursos.pesquisar(candidatos[i].getOp1());
             Curso cursoOpcao2 = cursos.pesquisar(candidatos[i].getOp2());
 
             // Verifica se o candidato foi selecionado para a primeira opção de curso
-
             boolean selecionadoOpcao1 = cursoOpcao1.inserirListaSelecionados(candidatos[i]);
 
             // Verifica se o candidato foi selecionado para a segunda opção de curso
@@ -98,7 +92,6 @@ public class Vestibular {
     // Ordena candidatos por meio do algoritmo de ordenação mergesort
     public void ordenarCandidatos() {
         mergesort(candidatos, 0, candidatos.length - 1);
-
     }
 
     public void mergesort(Candidato[] array, int esq, int dir) {
@@ -183,8 +176,13 @@ public class Vestibular {
     }
 
     public void escreverSaida(String nomeArq) throws FileNotFoundException, UnsupportedEncodingException {
+        // Cria um objeto Formatter para escrever no arquivo de saída
         Formatter arqEscrita = new Formatter("saida.txt", "UTF-8");
+
+        // Formata e escreve os resultados no arquivo
         arqEscrita.format("%s", cursos.mostrar());
+
+        // Fecha o objeto Formatter
         arqEscrita.close();
     }
 

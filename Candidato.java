@@ -8,6 +8,7 @@ public class Candidato {
     private int op2;
     private double media;
 
+    // Construtor da classe Candidato
     public Candidato(String nome, double notaRed, double notaMat, double notaLing, int op1, int op2) {
         this.nome = nome;
         this.notaRed = notaRed;
@@ -17,11 +18,15 @@ public class Candidato {
         this.op2 = op2;
     }
 
+    // Sobrescrita do método toString() para retornar uma representação em String do
+    // objeto Candidato
     @Override
     public String toString() {
         return "Candidato [nome=" + nome + ", notaRed=" + notaRed + ", notaMat=" + notaMat + ", notaLing=" + notaLing
                 + ", op1=" + op1 + ", op2=" + op2 + ", media=" + media + "]";
     }
+
+    // Métodos getters e setters para acessar e modificar os atributos da classe
 
     public String getNome() {
         return nome;
@@ -71,6 +76,8 @@ public class Candidato {
         this.op2 = op2;
     }
 
+    // Método para calcular a média das notas (média arredondada para duas casas
+    // decimais)
     public double getMedia() {
         double media = (notaLing + notaMat + notaRed) / 3;
         double arredondado = Math.round(media * 100.0) / 100.0;
