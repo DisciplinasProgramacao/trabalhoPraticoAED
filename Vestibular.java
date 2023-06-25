@@ -14,7 +14,7 @@ public class Vestibular {
     private int qtdCandidatos;
 
     public Vestibular(ListaCursos cursos, Candidato[] candidatos, int qtdCursos, int qtdCandidatos) {
-        this.cursos = cursos;
+        this.cursos = new ListaCursos();
         this.candidatos = candidatos;
         this.qtdCursos = qtdCursos;
         this.qtdCandidatos = qtdCandidatos;

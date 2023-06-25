@@ -16,20 +16,22 @@ public class ListaCursos {
     public String mostrar() {
         StringBuilder sb = new StringBuilder();
 
+        sb.append("Processo seletivo da Universidade Stark\n\n");
+
         for (CelulaCurso celula = primeiro.prox; celula != null; celula = celula.prox) {
             Curso curso = celula.elemento;
 
-            sb.append("\n");
-
-            sb.append(curso.getNome()).append(" ").append(curso.calcularMenorNotaSelecionados()).append("\n");
-            sb.append("Selecionados\n");
+            sb.append("Curso: ").append(curso.getNome()).append(" - Nota de corte: ").append(curso.calcularMenorNotaSelecionados()).append("\n");
+            sb.append("Selecionados:\n");
             for (Candidato candidato : curso.getListaSelecionados()) {
-                sb.append(candidato.getNome()).append(" ").append(candidato.getMedia()).append("\n");
+                sb.append("🟩").append(candidato.getNome()).append(" ").append(candidato.getMedia()).append("\n");
             }
-            sb.append("Fila de Espera\n");
+            sb.append("Fila de Espera:\n");
             for (Candidato candidato : curso.getFilaEspera()) {
-                sb.append(candidato.getNome()).append(" ").append(candidato.getMedia()).append("\n");
+                sb.append("🟨").append(candidato.getNome()).append(" ").append(candidato.getMedia()).append("\n");
             }
+
+            sb.append("\n");
         }
 
         return sb.toString();

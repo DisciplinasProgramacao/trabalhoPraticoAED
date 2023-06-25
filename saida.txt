@@ -1,26 +1,28 @@
+Processo seletivo da Universidade Stark
 
-Matemática 733.33
-Selecionados
-Mickey Mouse 766.67
-Pato Donald 733.33
-Fila de Espera
-Bob Esponja 700.0
+Curso: Matemática - Nota de corte: 733.33
+Selecionados:
+🟩Mickey Mouse 766.67
+🟩Pato Donald 733.33
+Fila de Espera:
+🟨Bob Esponja 700.0
 
-Física 633.33
-Selecionados
-Bob Esponja 700.0
-Peppa Pig 633.33
-Fila de Espera
+Curso: Física - Nota de corte: 633.33
+Selecionados:
+🟩Bob Esponja 700.0
+🟩Peppa Pig 633.33
+Fila de Espera:
 
-Química 783.33
-Selecionados
-Deadpool 800.0
-Peter Parker 783.33
-Fila de Espera
-Peppa Pig 633.33
+Curso: Química - Nota de corte: 783.33
+Selecionados:
+🟩Deadpool 800.0
+🟩Peter Parker 783.33
+Fila de Espera:
+🟨Peppa Pig 633.33
 
-Estatística 566.67
-Selecionados
-Tio Patinhas 666.67
-Super Mario Bros 566.67
-Fila de Espera
+Curso: Estatística - Nota de corte: 566.67
+Selecionados:
+🟩Tio Patinhas 666.67
+🟩Super Mario Bros 566.67
+Fila de Espera:
+
