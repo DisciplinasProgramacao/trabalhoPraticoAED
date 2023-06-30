@@ -79,12 +79,12 @@ public class Vestibular {
 
             // Verifica se o candidato foi selecionado para a segunda opção de curso
             if (!selecionadoOpcao1 && cursoOpcao2 != null) {
+                cursoOpcao1.inserirFilaEspera(candidatos[i]);
                 boolean selecionadoOpcao2 = cursoOpcao2.inserirListaSelecionados(candidatos[i]);
                 if (!selecionadoOpcao2) {
-                    cursoOpcao1.inserirFilaEspera(candidatos[i]);
                     cursoOpcao2.inserirFilaEspera(candidatos[i]);
                 }
-                cursoOpcao1.inserirFilaEspera(candidatos[i]);
+
             }
         }
     }
